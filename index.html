@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Пётр &amp; Наталья Демидовы — Mini App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="screen" id="viewHome">
+
+  <section class="hero">
+    <img class="hero__photo" src="http://demidovs.ru/images/duet-hero-premium.jpg" alt="Пётр и Наталья Демидовы">
+    <div class="hero__fade"></div>
+  </section>
+
+  <section class="intro">
+    <h1 class="intro__title">ПЁТР &amp; НАТАЛЬЯ</h1>
+    <p class="intro__subtitle">Дуэт ведущих</p>
+    <p class="intro__badge">Бронирование 2027 открыто</p>
+  </section>
+
+  <section class="plan">
+    <h2 class="plan__title">ЧТО ВЫ ПЛАНИРУЕТЕ?</h2>
+
+    <div class="plan__grid" id="eventGrid">
+      <button class="event-card" data-event="wedding" type="button">Свадьба</button>
+      <button class="event-card" data-event="corporate" type="button">Корпоратив</button>
+      <button class="event-card" data-event="anniversary" type="button">Юбилей</button>
+      <button class="event-card" data-event="private" type="button">Частное событие</button>
+    </div>
+
+    <div class="cta" id="ctaBlock">
+      <button class="cta__button cta__button--primary" id="ctaMatch" type="button">ПОМОГИТЕ ВЫБРАТЬ</button>
+      <button class="cta__button cta__button--secondary" id="ctaDate" type="button">ПРОВЕРИТЬ ДАТУ</button>
+    </div>
+  </section>
+
+</main>
+
+<main class="screen" id="viewMatch" hidden>
+
+  <div class="match-topbar" id="matchTopbar" hidden>
+    <button class="match-back" id="matchBack" type="button" aria-label="Назад">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5 8 12l7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="match-progress">
+      <span class="match-progress__text" id="matchProgressText">1 / 3</span>
+      <div class="match-progress__track"><div class="match-progress__fill" id="matchProgressFill"></div></div>
+    </div>
+  </div>
+
+  <div class="match-context" id="matchContext" hidden>
+    <p class="match-context__event" id="matchContextEvent">СВАДЬБА</p>
+    <p class="match-context__hint">Поможем выбрать формат ведения</p>
+  </div>
+
+  <section class="match-panel" id="panelEvent" data-panel="event">
+    <h1 class="match-panel__title">КАКОЕ У ВАС СОБЫТИЕ?</h1>
+    <div class="option-grid" id="matchEventGrid">
+      <button class="event-card" data-event="wedding" type="button">Свадьба</button>
+      <button class="event-card" data-event="corporate" type="button">Корпоратив</button>
+      <button class="event-card" data-event="anniversary" type="button">Юбилей</button>
+      <button class="event-card" data-event="private" type="button">Частное событие</button>
+    </div>
+  </section>
+
+  <section class="match-panel" id="panelStep1" data-panel="1" hidden>
+    <h1 class="match-panel__title">СКОЛЬКО БУДЕТ ГОСТЕЙ?</h1>
+    <div class="option-grid" id="matchStep1Grid">
+      <button class="event-card" data-value="under30" type="button">До 30</button>
+      <button class="event-card" data-value="30-70" type="button">30–70</button>
+      <button class="event-card" data-value="70-120" type="button">70–120</button>
+      <button class="event-card" data-value="120+" type="button">120+</button>
+    </div>
+  </section>
+
+  <section class="match-panel" id="panelStep2" data-panel="2" hidden>
+    <h1 class="match-panel__title">КАКИМ ВЫ ПРЕДСТАВЛЯЕТЕ ВАШЕ СОБЫТИЕ?</h1>
+    <div class="option-grid" id="matchStep2Grid">
+      <button class="event-card" data-value="light" type="button">Весёлым и лёгким</button>
+      <button class="event-card" data-value="emotional" type="button">Душевным и эмоциональным</button>
+      <button class="event-card" data-value="dynamic" type="button">Динамичным и неожиданным</button>
+      <button class="event-card" data-value="balance" type="button">Хочу баланс</button>
+    </div>
+  </section>
+
+  <section class="match-panel" id="panelStep3" data-panel="3" hidden>
+    <h1 class="match-panel__title">ЧТО ДЛЯ ВАС ОСОБЕННО ВАЖНО?</h1>
+    <p class="match-panel__hint">Можно выбрать несколько</p>
+    <div class="option-list" id="matchStep3List">
+      <button class="event-card event-card--row" data-value="humor" type="button">Юмор и импровизация</button>
+      <button class="event-card event-card--row" data-value="ceremony" type="button">Красивая церемония и история</button>
+      <button class="event-card event-card--row" data-value="attention" type="button">Внимание к каждому гостю</button>
+      <button class="event-card event-card--row" data-value="control" type="button">Чтобы вечер был цельным и всё держали под контролем</button>
+    </div>
+    <button class="cta__button cta__button--primary match-submit" id="btnShowResult" type="button" disabled>ПОКАЗАТЬ РЕЗУЛЬТАТ</button>
+  </section>
+
+  <section class="match-panel match-result" id="panelResult" data-panel="result" hidden></section>
+
+</main>
+
+<main class="screen" id="viewHosts" hidden>
+
+  <div class="hosts-header">
+    <h1 class="hosts-header__title">ВЕДУЩИЕ</h1>
+    <p class="hosts-header__subtitle">Познакомьтесь поближе</p>
+  </div>
+
+  <article class="host-card" data-host="petr">
+    <p class="host-card__reco" id="recoPetr" hidden>Ваша рекомендация</p>
+    <div class="host-card__photo-wrap">
+      <img class="host-card__photo host-card__photo--petr" src="http://demidovs.ru/images/petr-hero-original.jpg" alt="Пётр">
+    </div>
+    <div class="host-card__body">
+      <h2 class="host-card__name">ПЁТР</h2>
+      <p class="host-card__traits">ЮМОР · ИМПРОВИЗАЦИЯ · ЛЁГКОСТЬ</p>
+      <p class="host-card__desc">Пётр быстро реагирует на происходящее и много импровизирует. Добрый юмор и лёгкая подача помогают гостям быстро включиться в событие.</p>
+      <div class="host-card__price">
+        <span class="host-card__price-value">от 70 000 ₽</span>
+        <span class="host-card__price-hours">6 часов ведения</span>
+      </div>
+      <div class="host-card__actions">
+        <button class="cta__button cta__button--primary host-card__watch" data-host="petr" type="button">СМОТРЕТЬ В ДЕЛЕ</button>
+        <button class="cta__button cta__button--secondary host-card__date" data-host="petr" type="button">ПРОВЕРИТЬ ДАТУ</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="host-card" data-host="natalia">
+    <p class="host-card__reco" id="recoNatalia" hidden>Ваша рекомендация</p>
+    <div class="host-card__photo-wrap">
+      <img class="host-card__photo host-card__photo--natalia" src="http://demidovs.ru/images/natalia-hero-new.webp" alt="Наталья">
+    </div>
+    <div class="host-card__body">
+      <h2 class="host-card__name">НАТАЛЬЯ</h2>
+      <p class="host-card__traits">ЭМОЦИИ · ИСТОРИЯ · АТМОСФЕРА</p>
+      <p class="host-card__desc">Наталья работает с историей пары и эмоциональными моментами вечера. Выстраивает церемонию и держит внимание гостей разных поколений.</p>
+      <div class="host-card__price">
+        <span class="host-card__price-value">от 70 000 ₽</span>
+        <span class="host-card__price-hours">6 часов ведения</span>
+      </div>
+      <div class="host-card__actions">
+        <button class="cta__button cta__button--primary host-card__watch" data-host="natalia" type="button">СМОТРЕТЬ В ДЕЛЕ</button>
+        <button class="cta__button cta__button--secondary host-card__date" data-host="natalia" type="button">ПРОВЕРИТЬ ДАТУ</button>
+      </div>
+    </div>
+  </article>
+
+  <article class="host-card" data-host="duet">
+    <p class="host-card__reco" id="recoDuet" hidden>Ваша рекомендация</p>
+    <div class="host-card__photo-wrap">
+      <img class="host-card__photo host-card__photo--duet" src="http://demidovs.ru/images/duet-hero-premium.jpg" alt="Пётр и Наталья">
+    </div>
+    <div class="host-card__body">
+      <h2 class="host-card__name">ПЁТР &amp; НАТАЛЬЯ</h2>
+      <p class="host-card__traits">ДВА ВЕДУЩИХ · ОДНА ИСТОРИЯ</p>
+      <p class="host-card__desc">Два поля внимания и живой диалог на сцене. Разные сильные стороны Петра и Натальи работают по одному общему сценарию.</p>
+      <div class="host-card__price">
+        <span class="host-card__price-value">120 000 ₽</span>
+        <span class="host-card__price-hours">6 часов ведения</span>
+      </div>
+      <p class="host-card__perk">Тяжёлый дым в подарок</p>
+      <div class="host-card__actions">
+        <button class="cta__button cta__button--primary host-card__watch" data-host="duet" type="button">СМОТРЕТЬ В ДЕЛЕ</button>
+        <button class="cta__button cta__button--secondary host-card__date" data-host="duet" type="button">ПРОВЕРИТЬ ДАТУ</button>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<main class="screen" id="viewDate" hidden>
+
+  <div class="date-header">
+    <h1 class="date-header__title">ОБСУДИТЬ МЕРОПРИЯТИЕ</h1>
+    <p class="date-header__subtitle">Оставьте несколько деталей — Пётр и Наталья свяжутся с вами</p>
+  </div>
+
+  <section class="date-form" id="dateForm">
+
+    <div class="date-field">
+      <p class="date-field__label">Дата мероприятия</p>
+      <button class="date-picker-btn" id="datePickerBtn" type="button">Выбрать дату</button>
+      <input class="date-input-native" type="date" id="dateInput" tabindex="-1" aria-hidden="true">
+
+      <label class="checkbox-field" id="dateUnknownField">
+        <input type="checkbox" id="dateUnknownCheckbox">
+        <span>Точная дата пока неизвестна</span>
+      </label>
+    </div>
+
+    <div class="date-field">
+      <p class="date-field__label">Тип мероприятия</p>
+      <div class="option-grid" id="dateEventGrid">
+        <button class="event-card" data-event="wedding" type="button">Свадьба</button>
+        <button class="event-card" data-event="corporate" type="button">Корпоратив</button>
+        <button class="event-card" data-event="anniversary" type="button">Юбилей</button>
+        <button class="event-card" data-event="private" type="button">Частное событие</button>
+      </div>
+    </div>
+
+    <div class="date-field">
+      <p class="date-field__label">Кого рассматриваете</p>
+      <div class="option-list" id="dateHostList">
+        <button class="event-card event-card--row" data-host="petr" type="button">Пётр</button>
+        <button class="event-card event-card--row" data-host="natalia" type="button">Наталья</button>
+        <button class="event-card event-card--row" data-host="duet" type="button">Пётр &amp; Наталья</button>
+        <button class="event-card event-card--row" data-host="unsure" type="button">Пока не знаю</button>
+      </div>
+    </div>
+
+    <div class="date-field">
+      <label class="date-field__label" for="nameInput">Как к вам обращаться?</label>
+      <input class="date-input" type="text" id="nameInput" placeholder="Имя" autocomplete="name">
+    </div>
+
+    <div class="date-field">
+      <p class="date-field__label">Как связаться</p>
+      <div class="option-grid" id="contactTypeGrid">
+        <button class="event-card" data-contact="phone" type="button">Телефон</button>
+        <button class="event-card" data-contact="telegram" type="button">Telegram</button>
+      </div>
+      <input class="date-input date-contact-input" type="tel" id="phoneInput" placeholder="Телефон" hidden autocomplete="tel">
+      <input class="date-input date-contact-input" type="text" id="telegramInput" placeholder="Ваш @username" hidden autocomplete="off">
+    </div>
+
+    <label class="checkbox-field" id="privacyField">
+      <input type="checkbox" id="privacyConsent">
+      <span>Я согласен(на) на <a href="#privacy" class="date-link" id="privacyLink">обработку персональных данных</a></span>
+    </label>
+
+    <button class="cta__button cta__button--primary date-submit" id="dateSubmitBtn" type="button" disabled>ПРОВЕРИТЬ ДАТУ</button>
+  </section>
+
+  <section class="date-success" id="dateSuccess" hidden>
+    <h1 class="date-success__title">ГОТОВО!</h1>
+    <p class="date-success__text">Ваш запрос подготовлен.</p>
+    <p class="date-success__note">После подключения Telegram Пётр и Наталья смогут получать такие заявки прямо в Telegram.</p>
+    <button class="cta__button cta__button--primary" id="dateHomeBtn" type="button">НА ГЛАВНУЮ</button>
+  </section>
+
+</main>
+
+<div class="video-modal" id="videoModal" hidden>
+  <div class="video-modal__backdrop" id="videoModalBackdrop"></div>
+  <div class="video-modal__panel">
+    <button class="video-modal__close" id="videoModalClose" type="button" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg>
+    </button>
+    <video class="video-modal__player" id="videoModalPlayer" controls playsinline></video>
+    <p class="video-modal__caption" id="videoModalCaption"></p>
+  </div>
+</div>
+
+<nav class="tabbar">
+  <button class="tabbar__item tabbar__item--active" data-tab="home" type="button">
+    <svg class="tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1v-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Главная</span>
+  </button>
+  <button class="tabbar__item" data-tab="match" type="button">
+    <svg class="tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M7 12h10M10 18h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Подбор</span>
+  </button>
+  <button class="tabbar__item" data-tab="hosts" type="button">
+    <svg class="tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="2.6"/><circle cx="16.5" cy="9.5" r="2.1"/><path d="M3.5 19c.5-3 2.7-5 5.5-5s5 2 5.5 5" stroke-linecap="round"/><path d="M14.8 14.3c2.2.2 3.9 1.9 4.3 4.7" stroke-linecap="round"/></svg>
+    <span>Ведущие</span>
+  </button>
+  <button class="tabbar__item" data-tab="date" type="button">
+    <svg class="tabbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3.5v3M16 3.5v3" stroke-linecap="round"/></svg>
+    <span>Дата</span>
+  </button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
