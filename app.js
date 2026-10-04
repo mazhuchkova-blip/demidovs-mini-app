@@ -294,7 +294,7 @@ const PERSONAS = {
   petr: {
     name: 'ПЁТР',
     role: 'ВЕДУЩИЙ',
-    photo: 'http://demidovs.ru/images/petr-hero-original.jpg',
+    photo: 'assets/images/petr-hero-original.jpg',
     price: 'от 70 000 ₽',
     hours: '6 часов',
     explanation: 'Вы хотите лёгкости, юмора и живой импровизации. Пётр мягко вовлекает гостей и держит зал в тонусе без давления.',
@@ -302,7 +302,7 @@ const PERSONAS = {
   natalia: {
     name: 'НАТАЛЬЯ',
     role: 'ВЕДУЩАЯ',
-    photo: 'http://demidovs.ru/images/natalia-hero-new.webp',
+    photo: 'assets/images/natalia-hero-new.webp',
     price: 'от 70 000 ₽',
     hours: '6 часов',
     explanation: 'Для вас важны эмоции, церемония и внимание к гостям. Наталья выстраивает драматургию вечера, эмоциональные переходы и финал.',
@@ -310,7 +310,7 @@ const PERSONAS = {
   duet: {
     name: 'ПЁТР & НАТАЛЬЯ',
     role: 'ДУЭТ ВЕДУЩИХ',
-    photo: 'http://demidovs.ru/images/duet-hero-premium.jpg',
+    photo: 'assets/images/duet-hero-premium.jpg',
     price: '120 000 ₽',
     hours: '6 часов',
     explanation: 'Вы хотите, чтобы в вечере были и лёгкость, и эмоции. В дуэте Пётр отвечает за юмор и импровизацию, Наталья — за драматургию, церемонию и эмоциональные моменты.',
@@ -370,18 +370,18 @@ function renderResult() {
 
 const HOST_VIDEOS = {
   petr: {
-    src: 'http://demidovs.ru/media/videos/showreel.mp4',
-    poster: 'http://demidovs.ru/images/petr-hero-original.jpg',
+    src: 'assets/videos/showreel.mp4',
+    poster: 'assets/images/petr-hero-original.jpg',
     caption: 'Шоурил',
   },
   natalia: {
-    src: 'http://demidovs.ru/media/videos/showreel.mp4',
-    poster: 'http://demidovs.ru/images/natalia-hero-new.webp',
+    src: 'assets/videos/showreel.mp4',
+    poster: 'assets/images/natalia-hero-new.webp',
     caption: 'Шоурил',
   },
   duet: {
-    src: 'http://demidovs.ru/media/videos/about-us.mp4',
-    poster: 'http://demidovs.ru/images/duet-hero-premium.jpg',
+    src: 'assets/videos/about-us.mp4',
+    poster: 'assets/images/duet-hero-premium.jpg',
     caption: 'Знакомство',
   },
 };
